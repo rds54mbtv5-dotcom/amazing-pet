@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'">
+  <title>非遗小火苗</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="renderer.js" defer></script>
+</head>
+<body>
+  <main class="pet-home">
+    <div id="bubble" role="status" aria-live="polite">今天想了解什么非遗知识？</div>
+    <button id="pet" type="button" aria-label="非遗小火苗，点击聊天，按住拖动，右键退出">
+      <img id="pet-image" src="pet.png" alt="非遗小火苗" draggable="false">
+      <span id="missing-image" hidden>请将透明图片保存为<br>项目目录中的 pet.png</span>
+    </button>
+  </main>
+</body>
+</html>

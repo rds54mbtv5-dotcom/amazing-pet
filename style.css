@@ -1,0 +1,23 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; }
+body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; user-select: none; }
+.pet-home { position: relative; width: 300px; height: 300px; }
+#pet { position: absolute; left: 40px; top: 78px; width: 220px; height: 210px;
+  padding: 0; border: 0; background: transparent; cursor: grab; touch-action: none;
+  animation: float 3.6s ease-in-out infinite; }
+#pet:active { cursor: grabbing; }
+#pet:focus-visible { outline: 2px dashed #c76c32; outline-offset: 2px; border-radius: 24px; }
+#pet img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+#missing-image { display: block; padding: 35px 12px; border-radius: 24px; background: #fff5df; color: #8f4528; line-height: 1.8; }
+[hidden] { display: none !important; }
+#bubble { position: absolute; top: 12px; left: 20px; width: 260px; padding: 15px 10px;
+  text-align: center; color: #713e29; background: #fff8eb; border: 1px solid #efc99c;
+  border-radius: 18px; box-shadow: 0 4px 10px #5a30152b; font-size: 15px;
+  opacity: 0; transform: translateY(5px); transition: opacity .3s ease, transform .3s ease;
+  pointer-events: none; }
+#bubble::after { content: ""; position: absolute; left: calc(50% - 6px); bottom: -7px;
+  width: 12px; height: 12px; background: #fff8eb; border-right: 1px solid #efc99c;
+  border-bottom: 1px solid #efc99c; transform: rotate(45deg); }
+#bubble.visible { opacity: 1; transform: translateY(0); }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@media (prefers-reduced-motion: reduce) { #pet { animation: none; } #bubble { transition: none; } }
