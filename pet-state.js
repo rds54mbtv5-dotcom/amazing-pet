@@ -2,13 +2,13 @@
 (function (root) {
   const actions = Object.freeze({
     idle: { priority: 0 },
-    blink: { priority: 1, duration: 420 },
     sleep: { priority: 1 },
     greet: { priority: 2, duration: 1000 },
     shy: { priority: 3, duration: 800 },
     happy: { priority: 4, duration: 700 },
-    land: { priority: 5, duration: 420 },
-    drag: { priority: 6 }
+    playInstrument: { priority: 5, duration: 3000 },
+    land: { priority: 6, duration: 420 },
+    drag: { priority: 7 }
   });
   class PetStateMachine {
     constructor(onChange, clock = globalThis) {
@@ -22,6 +22,7 @@
       if (!actions[next]) throw new Error(`Unknown pet action: ${next}`);
       if (!force && actions[next].priority < actions[this.state].priority) return false;
       this.clock.clearTimeout(this.timer);
+      this.timer = null;
       this.state = next;
       this.onChange(next);
       const duration = actions[next].duration;

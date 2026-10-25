@@ -8,4 +8,4 @@ fi
 if [ ! -f node_modules/electron/package.json ]; then
   npm ci || { read -r -p 'Installation failed. Press Enter to close...'; exit 1; }
 fi
-npm start || { read -r -p 'Startup failed. Press Enter to close...'; exit 1; }
+npm run start:desktop || { read -r -p 'Startup failed. Press Enter to close...'; exit 1; }

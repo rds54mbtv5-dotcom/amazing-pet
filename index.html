@@ -4,39 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'">
-  <title>非遗小火苗</title>
+  <title>非遗小火苗 · 桌宠</title>
   <link rel="stylesheet" href="style.css">
   <script src="pet-state.js" defer></script>
   <script src="renderer.js" defer></script>
 </head>
 <body>
-  <main class="pet-home">
-    <div id="bubble" role="status" aria-live="polite">今天想了解什么非遗知识？</div>
-    <button id="pet" type="button" aria-label="非遗小火苗，点击聊天，按住拖动，右键退出">
-      <span class="pet-art" aria-hidden="true">
-        <img id="pet-image" src="pet.png" alt="" draggable="false">
-        <svg class="face" viewBox="0 0 1116 1409" fill="none">
-          <defs>
-            <linearGradient id="lid-color" x2="0" y2="1"><stop stop-color="#ffe09a"/><stop offset="1" stop-color="#ffe8ad"/></linearGradient>
-          </defs>
-          <g class="eyelids">
-            <ellipse cx="435" cy="672" rx="89" ry="116" fill="url(#lid-color)"/>
-            <ellipse cx="727" cy="626" rx="88" ry="113" fill="url(#lid-color)"/>
-            <path d="M378 678 Q430 713 491 669 M670 624 Q725 660 785 615" stroke="#88431f" stroke-width="12" stroke-linecap="round"/>
-          </g>
-          <g class="blush" fill="#ef7676">
-            <ellipse cx="334" cy="778" rx="64" ry="32"/>
-            <ellipse cx="827" cy="724" rx="58" ry="30"/>
-          </g>
-        </svg>
-        <span class="sleep-mark">Z<span>z</span><span>z</span></span>
-        <span class="happy-mark">✦</span>
-        <svg class="greeting-hand" viewBox="0 0 60 70" fill="#ffda87" stroke="#b66a2d" stroke-width="2.5" stroke-linecap="round">
-          <path d="M19 60C10 53 8 42 5 34C3 28 9 26 13 31L19 39L14 14C13 7 20 6 22 13L27 32L25 7C25 1 32 1 33 7L35 31L38 10C39 4 46 6 45 12L43 34L48 22C51 16 57 19 54 26L49 48C47 59 39 65 29 65Z"/>
-        </svg>
+  <header class="page-heading"><span class="brand-dot" aria-hidden="true"></span>非遗小火苗<span class="page-subtitle">你的非遗小伙伴</span></header>
+  <main class="pet-home" aria-label="非遗桌宠">
+    <div id="bubble" role="status" aria-live="polite"></div>
+    <button id="pet" type="button" aria-label="小火苗：单击跳跃，双击演奏，按住拖动" aria-describedby="instructions">
+      <span class="pet-art">
+        <img id="pet-image" src="pet.png" alt="火焰头发、传统服饰、手持乐器的非遗小火人" draggable="false" width="1116" height="1409">
+        <span class="sleep-mark" aria-hidden="true">Z<span>z</span><span>z</span></span>
       </span>
-      <span id="missing-image" hidden>请将透明图片保存为<br>项目目录中的 pet.png</span>
+      <span id="missing-image" hidden>图片未能加载，请刷新重试</span>
     </button>
   </main>
+  <footer class="page-help" id="instructions"><span>轻点 · 跳一跳</span><span>停留 · 摸摸头</span><span>双击 · 演奏</span><span>按住 · 拖动</span><small>拖到喜欢的位置，下次见面还在这里</small></footer>
 </body>
 </html>

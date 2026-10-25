@@ -20,7 +20,7 @@ function setup() {
   return { machine: new PetStateMachine(() => {}, clock), clock };
 }
 test('all finite actions return to idle after their documented duration', () => {
-  for (const [state, duration] of Object.entries({ blink:420, greet:1000, shy:800, happy:700, land:420 })) {
+  for (const [state, duration] of Object.entries({ playInstrument:3000, greet:1000, shy:800, happy:700, land:420 })) {
     const { machine, clock } = setup();
     machine.play(state); clock.advance(duration - 1); assert.equal(machine.state, state);
     clock.advance(1); assert.equal(machine.state, 'idle');
@@ -28,7 +28,7 @@ test('all finite actions return to idle after their documented duration', () => 
 });
 test('drag blocks all automatic and lower-priority actions until explicit landing', () => {
   const { machine, clock } = setup(); machine.play('drag');
-  for (const state of ['idle','blink','greet','shy','happy','sleep','land']) assert.equal(machine.play(state), false);
+  for (const state of ['idle','playInstrument','greet','shy','happy','sleep','land']) assert.equal(machine.play(state), false);
   clock.advance(60000); assert.equal(machine.state, 'drag');
   machine.play('land', { force:true }); clock.advance(420); assert.equal(machine.state,'idle');
 });
@@ -43,4 +43,12 @@ test('sleep persists, wakes explicitly, and dispose cancels pending animation ca
   assert.equal(machine.state,'sleep'); machine.play('idle',{ force:true }); assert.equal(machine.state,'idle');
   machine.play('happy');machine.dispose();clock.advance(1000);assert.equal(machine.state,'happy');
   assert.throws(()=>machine.play('unknown'), /Unknown pet action/);
+});
+
+test('instrument play preempts happy; lower actions cannot interrupt its three-second rhythm', () => {
+  const { machine, clock } = setup();
+  machine.play('happy'); clock.advance(300); machine.play('playInstrument');
+  assert.equal(machine.play('shy'),false); assert.equal(machine.play('greet'),false);
+  clock.advance(2999); assert.equal(machine.state,'playInstrument');
+  clock.advance(1); assert.equal(machine.state,'idle');
 });

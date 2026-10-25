@@ -14,5 +14,5 @@ if not exist node_modules\electron\package.json (
     exit /b 1
   )
 )
-call npm start
+call npm run start:desktop
 if errorlevel 1 pause

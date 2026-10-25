@@ -8,6 +8,11 @@ on:
       - renderer.js
       - pet-state.js
       - pet.png
+      - scripts/**
+      - tests/**
+      - package.json
+      - package-lock.json
+      - playwright.config.cjs
       - .github/workflows/pages.yml
   workflow_dispatch:
 permissions:
@@ -19,17 +24,23 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm run build:web
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
       - uses: actions/configure-pages@v5
-      - name: Prepare static preview
-        run: |
-          mkdir _site
-          cp index.html style.css renderer.js pet-state.js pet.png _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

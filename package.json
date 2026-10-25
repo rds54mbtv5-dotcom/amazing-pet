@@ -5,13 +5,17 @@
   "description": "非遗知识桌面宠物",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "check": "node --check main.js && node --check preload.js && node --check renderer.js && node --check pet-state.js",
+    "start": "node scripts/serve.cjs",
+    "check": "node --check main.js && node --check preload.js && node --check renderer.js && node --check pet-state.js && node --check scripts/build-web.cjs && node --check scripts/serve.cjs",
     "package": "electron-packager . amazing-pet --out=dist --overwrite --asar --ignore=^/dist --ignore=^/\\.github --ignore=^/tests",
-    "test": "node --test tests/*.test.cjs"
+    "test": "node --test tests/*.test.cjs",
+    "start:desktop": "electron .",
+    "build:web": "node scripts/build-web.cjs",
+    "test:browser": "playwright test"
   },
   "devDependencies": {
     "@electron/packager": "20.3.0",
+    "@playwright/test": "1.64.1",
     "electron": "^43.0.0"
   }
 }
