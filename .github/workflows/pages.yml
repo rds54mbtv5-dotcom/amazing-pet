@@ -20,7 +20,7 @@ jobs:
       - name: Prepare static preview
         run: |
           mkdir _site
-          cp index.html style.css renderer.js pet.png _site/
+          cp index.html style.css renderer.js pet-state.js pet.png _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

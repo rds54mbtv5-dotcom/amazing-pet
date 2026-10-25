@@ -28,6 +28,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
+      - run: npm test
       - run: npm run package -- --platform=${{ matrix.platform }} --arch=${{ matrix.arch }}
       - uses: actions/upload-artifact@v4
         with:
