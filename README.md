@@ -70,7 +70,7 @@ npm test
 
 1. 在仓库 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**。
 2. 在 **Actions → Publish web preview → Run workflow** 选择 `main` 并运行。
-3. 成功后从部署记录打开页面链接。
+3. 成功后从部署记录打开页面链接。此后 `main` 中的网页、图片或动作脚本更新时，会自动重新发布，无需每次手动运行。
 
 网页支持图片、浮动动画和点击气泡。桌面置顶、拖动整个系统窗口、系统退出菜单需要运行桌面应用。Pages 的可用性取决于仓库可见性和 GitHub 账户方案。
 
